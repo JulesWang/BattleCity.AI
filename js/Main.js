@@ -1,10 +1,11 @@
-var key = {};													//���水����Ϣ
+//UTF-8
+var key = {};													//±£´æ°´¼üÐÅÏ¢
 
-var num = new Num();											//һ������
-var stageStart = new StageStart();								//�ؿ���ʼ
-var gamesOver = new GameOver();									//��Ϸ����
+var num = new Num();											//Ò»ÇÐÊý×Ö
+var stageStart = new StageStart();								//¹Ø¿¨¿ªÊ¼
+var gamesOver = new GameOver();									//ÓÎÏ·½áÊø
 var gameStart = new GameStart();
-var food = new Food();											//����
+var food = new Food();											//½±Àø
 var tankRun = new TankRun();
 
 var scoreBoard = new ScoreBoard();
@@ -12,22 +13,22 @@ var sound = new Sound();
 var firstLife = 3;
 
 var time;														
-var tankNum = 0;												//̹�˳�����											
-var level = 1;													//�ؿ�
+var tankNum = 0;												//Ì¹¿Ë³öÏÖÊý											
+var level = 1;													//¹Ø¿¨
 
 var playerNum = 1;
 
 
-var stopTime;													//��ͣʱ��
-var homeTime;													//���޵�ʱ��
+var stopTime;													//ÔÝÍ£Ê±¼ä
+var homeTime;													//¼ÒÎÞµÐÊ±¼ä
 
-var startLocation = [192,0,384];								//̹�˳���λ��
+var startLocation = [192,0,384];								//Ì¹¿Ë³öÏÖÎ»ÖÃ
 	
-var tanks = [];													//̹������									
-var bullets = [];												//�ӵ�����
-var hitFxs = [];												//�ӵ���ը����
-var bombFxs = [];												//̹�˱�ը����
-var tankStarts = [];											//̹�˿�ʼ����
+var tanks = [];													//Ì¹¿ËÊý×é									
+var bullets = [];												//×Óµ¯Êý×é
+var hitFxs = [];												//×Óµ¯±¬Õ¨Êý×é
+var bombFxs = [];												//Ì¹¿Ë±¬Õ¨Êý×é
+var tankStarts = [];											//Ì¹¿Ë¿ªÊ¼Êý×é
 var scoreNums = [];
 
 var player1,player2;
@@ -35,6 +36,7 @@ var player1,player2;
 var gameState = STATE_GAMESTART; 
 
 var intval = 300;
+var nextIntval = 300;
 
 function main()
 {
@@ -115,7 +117,19 @@ document.onkeydown = function(e)
 		
 		if(e.keyCode == K_2 &&  (gameState == STATE_PLAY || gameState == STATE_STAGE_INIT) ) nextStage();
 		if(e.keyCode == K_1 &&  (gameState == STATE_PLAY) )food.init();
-		if(e.keyCode == K_0 &&  (gameState == STATE_PLAY) )intval -= 10;
+		if(e.keyCode == K_0 &&  (gameState == STATE_PLAY) )
+		{
+			if(nextIntval == 300)
+			{
+				nextIntval = 100;
+				document.getElementById('fast-mode').innerHTML = "快速出兵模式开启";
+			}
+			else 	
+			{
+				nextIntval = 300;
+				document.getElementById('fast-mode').innerHTML = "";
+			}
+		}
 		
 		else if(e.keyCode == K_UP && gameState == STATE_SELECT) {tankRun.next(-1);}
 		else if(e.keyCode == K_DOWN && gameState == STATE_SELECT) {tankRun.next(1);}
@@ -265,6 +279,7 @@ function addTanks()
 	}
 	if(i == 2) 
 	{
+		intval = nextIntval;
 		time = -intval+1;
 	}
 }
