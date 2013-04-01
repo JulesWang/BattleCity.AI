@@ -1,0 +1,40 @@
+body,div,p,canvas{
+margin:0;
+padding:0;
+}
+
+body {
+background-color:#333;
+color:#ff9966;
+}
+
+#header{
+position:absolute;
+left:80px;
+}
+
+#control {
+position:absolute;
+top:70px;
+left:600px;
+text-align: center;
+opacity: 0.8;
+}
+
+#game{
+background-color:#000;
+}
+
+#game canvas{
+position:absolute;
+top:70px;
+left:50px;
+}
+
+#srcImg{
+display:none;
+}
+
+#astar{
+margin: 100px 0px 0px 600px;
+}
