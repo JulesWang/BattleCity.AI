@@ -115,6 +115,10 @@ document.onkeydown = function(e)
         e.preventDefault();
 		key[e.keyCode] = true;
 		
+		if(e.keyCode == K_9 &&  (gameState == STATE_SELECT) )
+		{
+			firstLife = 9;
+		}
 		if(e.keyCode == K_2 &&  (gameState == STATE_PLAY || gameState == STATE_STAGE_INIT) ) nextStage();
 		if(e.keyCode == K_1 &&  (gameState == STATE_PLAY) )food.init();
 		if(e.keyCode == K_0 &&  (gameState == STATE_PLAY) )
