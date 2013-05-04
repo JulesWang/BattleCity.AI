@@ -8,6 +8,7 @@
 	<script type="text/javascript">window.onload = function(){main()}</script>
 </head>
 <body >
+	<div class="container">
 	<div id = "srcImg">
 		<img src="img/tankAll.gif" id = "tankAll"/>
 	</div>
@@ -23,37 +24,28 @@
 	<div id = "header">
 		<h1>Battle City AI</h1>
 	</div>
-	<div id = "control">
-		<table border = 1 cellpadding = 10 >
-				<tr>
-					<th>control</th>
-					<th>UP</th>
-					<th>DOWN</th>
-					<th>LEFT</th>
-					<th>RIGHT</th>
-					<th>SHOOT</th>
-				</tr>
-				<tr>
-					<td>player1</td>
-					<td>up</td>
-					<td>down</td>
-					<td>left</td>
-					<td>right</td>
-					<td>space/enter</td>
-				</tr>
-				<tr>
-					<td>player2</td>
-					<td>w</td>
-					<td>s</td>
-					<td>a</td>
-					<td>d</td>
-					<td>j</td>
-				</tr>
-			空格或回车开火，作弊键(1键随机出奖励，2键换关), 数字0键切换快速出兵模式
-			</table>
-		<div id="fast-mode"></div>		
+	<ul id = "player1">
+		主机Player1
+		<li>方向: ↑↓→←</li>
+		<li>开火:空格/回车</li>
+	</ul>
+	<ul id = "player2">
+		副机Player2
+		<li>方向: w s a d</li>
+		<li>开火: j</li>
+	</ul>
+	<ul id="author">
+		<li>游戏制作: <a href="https://weibo.com/06wj">06wj</a></li>	
+		<li>游戏AI: <a href="https://weibo.com/rubyshoes">Jules.Wang</a></li>
+			<br>
+		<li><a href="http://evertips.info/topics/51852569d4375871b6000015">攻略秘笈</a></li>	
+	</ul>		
+
+	<div id="fast-mode"></div>		
 	</div>
 	<canvas id="astar" width="512" height="448"></canvas>
+	</div>
+	<a href="https://github.com/JulesWang/BattleCity.AI"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 	<script type="text/javascript" src = "js/Const.js"></script>
 	<script type="text/javascript" src = "js/Sound.js"></script>
 	<script type="text/javascript" src = "js/Map.js"></script>
