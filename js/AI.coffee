@@ -1,3 +1,7 @@
+# Author: Jules Wang  https://github.com/JulesWang
+# This work is licensed under the terms of the GNU GPL, version 2 or later.
+# See the LICENSE file in the top-level directory.
+
 preprocess_map = (map, astar_map) ->
 
   for i in [0...25] by 1
