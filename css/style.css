@@ -64,8 +64,16 @@ position: absolute;
 text-align: left;
 left: 640px;
 top: 50px;
-list-style: none outside none;
+list-style: inside outside none;
 }
+
+#cheat{
+opacity: 0;
+}
+#cheat:hover{
+opacity: 0.9;
+}
+
 #fast-mode{
 position: absolute;
 left: 670px;
