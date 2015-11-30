@@ -24,12 +24,14 @@ var HOME = 9;
 var DIE = 10;
 
 
-var STATE_INIT = 1; 
+var STATE_INIT = 1;
 var STATE_PLAY = 2;
-var STATE_STAGE_INIT = 3;  
-var STATE_GAMEOVER = 4; 
-var STATE_SELECT = 5; 
-var STATE_GAMESTART = 6; 
+var STATE_STAGE_INIT = 3;
+var STATE_GAMEOVER = 4;
+var STATE_SELECT = 5;
+var STATE_GAMESTART = 6;
+
+var STATE_PAUSE = 7;  // VICTOR FANG
 
 
 var K_UP = 38;
@@ -40,6 +42,7 @@ var K_LEFT = 37;
 var K_SPACE = 32;
 var K_TAB = 9;
 var K_ENTER = 13;
+//var K_ENTER = 16;
 var K_CTRL = 17;
 var K_ALT = 18;
 
@@ -110,7 +113,7 @@ imgStart.src = imgStartData;
 function GameStart()
 {
 	this.x = 0;
-	this.y = 512;	
+	this.y = 512;
 }
 
 
@@ -124,8 +127,8 @@ GameStart.prototype.draw = function()
 		graphics.fillRect(0, 0, 512, 448);
 	}
 	graphics.drawImage(imgStart, this.x, this.y, 512, 448);
-	
-	if(this.y <= 0) 
+
+	if(this.y <= 0)
 	{
 		this.y = 0;
 		graphics.drawImage(imgStart, this.x, this.y, 512, 448);
@@ -137,7 +140,7 @@ GameStart.prototype.draw = function()
 		this.init();
 
 	}
-	
+
 	this.y -= 5;
 }
 
@@ -152,7 +155,7 @@ function TankRun()
 {
 	this.x = 128;
 	this.time = 0;
-	
+
 	this.num = 0;
 	this.ys = [248, 280, 312];
 }
@@ -162,10 +165,10 @@ TankRun.prototype.draw = function()
 	var myCanvas = document.getElementById("stage");
 	var graphics = myCanvas.getContext("2d");
 	var img = document.getElementById("tankAll");
-	
+
 	this.time ++;
 	var temp;
-	
+
 	if( parseInt(this.time / 6) % 2 == 0)
 	{
 		temp = 0;
@@ -179,11 +182,11 @@ TankRun.prototype.draw = function()
 
 TankRun.prototype.init = function()
 {
-	
+
 	var myCanvas = document.getElementById("stage");
 	var graphics = myCanvas.getContext("2d");
 	graphics.clearRect(this.x, this.ys[this.num], 27, 27);
-	
+
 	this.time = 0;
 	this.num = 0;
 }
@@ -192,21 +195,21 @@ TankRun.prototype.next = function(n)
 {
 	var myCanvas = document.getElementById("stage");
 	var graphics = myCanvas.getContext("2d");
-	
+
 	graphics.clearRect(this.x, this.ys[this.num], 27, 27);
-	
-	if(n == 1) 
+
+	if(n == 1)
 	{
-		if(this.num == 2) 
+		if(this.num == 2)
 		{
 			this.num = 0;
 			return;
 		}
 		this.num ++;
 	}
-	else 
+	else
 	{
-		if(this.num == 0) 
+		if(this.num == 0)
 		{
 			this.num = 2;
 			return;
@@ -220,7 +223,7 @@ TankRun.prototype.next = function(n)
 function GameOver()
 {
 	this.x = 210;
-	this.y = 512;	
+	this.y = 512;
 }
 
 
@@ -229,17 +232,17 @@ GameOver.prototype.draw = function()
 	var myCanvas = document.getElementById("stage");
 	var graphics = myCanvas.getContext("2d");
 	var img = document.getElementById("tankAll");
-	
+
 	graphics.clearRect(this.x, this.y + 2, 62, 30);
 	graphics.drawImage(img, images["gameOver"][0],images["gameOver"][1], 62, 30, this.x, this.y, 62, 30);
-	
-	if(this.y <= 100) 
+
+	if(this.y <= 100)
 	{
 		gameState = STATE_GAMESTART;
 		graphics.clearRect(this.x, this.y, 62, 30);
 		this.init();
 	}
-	
+
 	this.y -= 2;
 }
 
@@ -247,6 +250,3 @@ GameOver.prototype.init = function()
 {
 	this.y = 512;
 }
-
-
-
